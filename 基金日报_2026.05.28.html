@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日基金新闻汇总 | 2026.05.28</title>
+<style>
+:root{--neon:#00ff41;--cyan:#00e5ff;--red:#ff1744;--orange:#ff9100;--purple:#d500f9;--bg:#03050a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#b0bec5;font-family:'Courier New','Source Code Pro',Consolas,monospace;font-size:14px;line-height:1.75;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(0,229,255,.03) 0%,transparent 50%),radial-gradient(ellipse at 80% 100%,rgba(0,255,65,.02) 0%,transparent 50%);pointer-events:none;z-index:0}
+.scan{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:998}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.12}
+.flicker{position:fixed;inset:0;background:transparent;pointer-events:none;z-index:999;animation:flick 8s infinite}
+@keyframes flick{0%,99.9%,100%{opacity:0}1%,3%{opacity:.02}1.5%{opacity:.04}50%,52%{opacity:0}51%{opacity:.01}}
+.ctn{max-width:740px;margin:0 auto;position:relative;z-index:1;padding:12px 8px 30px}
+.hdr{border:2px solid var(--cyan);padding:20px 16px 16px;margin-bottom:16px;position:relative;background:rgba(0,229,255,.03);box-shadow:0 0 30px rgba(0,229,255,.1),inset 0 0 30px rgba(0,229,255,.03)}
+.hdr::before{content:'SYS::ONLINE';position:absolute;top:-12px;left:16px;background:var(--bg);padding:0 10px;color:var(--cyan);font-size:11px;letter-spacing:3px;text-shadow:0 0 10px var(--cyan)}
+.hdr::after{content:'';position:absolute;inset:-2px;border:1px solid var(--cyan);opacity:.3;animation:borderPulse 2s ease-in-out infinite}
+@keyframes borderPulse{0%,100%{box-shadow:0 0 5px rgba(0,229,255,.2)}50%{box-shadow:0 0 25px rgba(0,229,255,.5)}}
+.glitch{font-size:22px;color:var(--cyan);letter-spacing:3px;position:relative;display:inline-block;text-shadow:0 0 15px rgba(0,229,255,.7)}
+.glitch::before,.glitch::after{content:'// 基金晚间速报';position:absolute;top:0;left:0;width:100%;overflow:hidden}
+.glitch::before{color:#ff1744;animation:glitch1 3s infinite;clip-path:inset(0 0 70% 0);text-shadow:-2px 0 var(--red)}
+.glitch::after{color:#00e5ff;animation:glitch2 3s infinite;clip-path:inset(70% 0 0 0);text-shadow:2px 0 var(--cyan)}
+@keyframes glitch1{0%,100%{transform:translate(0)}93%{transform:translate(-3px,1px)}95%{transform:translate(3px,-1px)}97%{transform:translate(0)}}
+@keyframes glitch2{0%,100%{transform:translate(0)}93%{transform:translate(3px,-1px)}95%{transform:translate(-3px,1px)}97%{transform:translate(0)}}
+.hdr .sub{font-size:12px;color:#546e7a;margin-top:2px}
+.hdr .mkt{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:12px;font-size:11px}
+.hdr .mkt span{border:1px solid rgba(0,229,255,.25);padding:3px 10px;color:#78909c;background:rgba(0,0,0,.4);transition:all .3s}
+.hdr .mkt span:hover{border-color:var(--cyan);box-shadow:0 0 8px rgba(0,229,255,.15)}
+.hdr .mkt .v{color:var(--neon);text-shadow:0 0 6px rgba(0,255,65,.4)}
+.mbar{background:rgba(0,15,25,.6);border:1px solid rgba(0,229,255,.2);padding:10px 14px;margin-bottom:14px;font-size:11px;display:flex;flex-wrap:wrap;gap:5px 12px;align-items:center;backdrop-filter:blur(4px)}
+.mbar .l{color:#37474f;letter-spacing:1px}
+.mbar .blink{animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.sec{border:1px solid rgba(255,255,255,.06);margin-bottom:14px;position:relative;background:rgba(0,0,0,.3);transition:all .3s}
+.sec:hover{border-color:rgba(0,229,255,.15)}
+.sh{padding:12px 16px;font-size:14px;font-weight:bold;letter-spacing:2px;display:flex;align-items:center;gap:8px;position:relative;overflow:hidden}
+.sh::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--c,var(--neon)),transparent);opacity:.4}
+.sb{padding:8px 16px 16px}
+.s1 .sh{--c:var(--cyan);background:rgba(0,229,255,.04);color:var(--cyan)}
+.s2 .sh{--c:var(--red);background:rgba(255,23,68,.04);color:var(--red)}
+.s3 .sh{--c:var(--orange);background:rgba(255,145,0,.04);color:var(--orange)}
+.s4 .sh{--c:var(--purple);background:rgba(213,0,249,.04);color:var(--purple)}
+.s5 .sh{--c:var(--neon);background:rgba(0,255,65,.04);color:var(--neon)}
+.sh .n{font-size:12px;opacity:.5;font-weight:normal}
+.item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;position:relative;transition:all .2s}
+.item:last-child{border:0}
+.item:hover{background:rgba(255,255,255,.01);padding-left:4px}
+.tag{display:inline-block;font-size:10px;padding:1px 7px;border:1px solid;margin:0 3px;letter-spacing:1px;vertical-align:middle;position:relative}
+.tb{color:var(--cyan);border-color:var(--cyan);--tc:rgba(0,229,255,.1)}
+.tr{color:var(--red);border-color:var(--red);--tc:rgba(255,23,68,.1)}
+.to{color:var(--orange);border-color:var(--orange);--tc:rgba(255,145,0,.1)}
+.tg{color:var(--neon);border-color:var(--neon);--tc:rgba(0,255,65,.1)}
+.tp{color:var(--purple);border-color:var(--purple);--tc:rgba(213,0,249,.1)}
+.r{color:var(--red);text-shadow:0 0 8px rgba(255,23,68,.3)}
+.o{color:var(--orange);text-shadow:0 0 8px rgba(255,145,0,.3)}
+.g{color:var(--neon);text-shadow:0 0 8px rgba(0,255,65,.3)}
+.b{color:var(--cyan)}
+.p-txt{color:var(--purple)}
+.num{display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;background:rgba(213,0,249,.1);color:var(--purple);font-size:11px;margin-right:5px;border-radius:2px;flex-shrink:0;font-weight:bold;border:1px solid rgba(213,0,249,.2)}
+.num-r{background:rgba(255,23,68,.1);color:var(--red);border-color:rgba(255,23,68,.2)}
+.num-o{background:rgba(255,145,0,.1);color:var(--orange);border-color:rgba(255,145,0,.2)}
+.warn{background:rgba(255,145,0,.03);border-left:3px solid var(--orange);padding:8px 12px;margin:10px 0;font-size:12px;color:var(--orange);text-shadow:0 0 8px rgba(255,145,0,.2)}
+.warn2{background:rgba(255,23,68,.03);border-left:3px solid var(--red);padding:8px 12px;margin:10px 0;font-size:12px;color:var(--red);text-shadow:0 0 8px rgba(255,23,68,.2)}
+.subhead{color:#546e7a;font-size:11px;padding:8px 0 4px;letter-spacing:1px;text-transform:uppercase}
+.ft{text-align:center;color:#37474f;font-size:10px;padding:20px 0 10px;border-top:1px solid rgba(255,255,255,.05);margin-top:10px;letter-spacing:2px;position:relative}
+.ft::before{content:'';display:block;width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);margin:0 auto 12px}
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;width:2px;height:2px;background:var(--cyan);border-radius:50%;animation:float 6s infinite}
+@keyframes float{0%{transform:translateY(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px);opacity:0}}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--neon);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;box-shadow:0 0 8px var(--neon)}
+@keyframes dataFlow{0%{background-position:0 0}100%{background-position:0 40px}}
+@media(max-width:480px){body{font-size:12px}.ctn{padding:8px 4px 20px}.glitch{font-size:17px}.item{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="scan"></div>
+<div class="flicker"></div>
+<canvas id="matrix"></canvas>
+
+<div class="ctn">
+
+<!-- Header -->
+<div class="hdr">
+  <div class="particles" id="particles"></div>
+  <div class="glitch">// 基金晚间速报</div>
+  <div class="sub">CLASSIFIED · TOP SECRET · 2026-05-28 基金版 <span class="cursor"></span></div>
+  <div class="mkt">
+    <span>偏股混合基金指数 <span class="v" style="color:#ff1744;text-shadow:0 0 6px rgba(255,23,68,.4)">-1.08%</span></span>
+    <span>ETF综合指数 <span class="v" style="color:#ff1744">-0.42%</span></span>
+    <span>债券型基金指数 <span class="v">+0.05%</span></span>
+    <span>QDII基金指数 <span class="v" style="color:#ff1744">-0.63%</span></span>
+    <span>场内ETF成交 <span class="v">5210亿</span></span>
+    <span>新发基金 <span class="v">8只</span></span>
+    <span>百亿规模 <span class="v">86只</span></span>
+  </div>
+  <div class="mkt" style="margin-top:6px">
+    <span>领涨：半导体ETF/科创50ETF/机器人ETF</span>
+    <span>领跌：医药ETF/白酒ETF/恒生互联网ETF</span>
+  </div>
+</div>
+
+<!-- Status bar -->
+<div class="mbar">
+  <span class="l">[ DATA STREAM ]</span>
+  <span>公募总规模首破39万亿</span><span style="color:#37474f">|</span>
+  <span>外资集体上调A股预期</span><span style="color:#37474f">|</span>
+  <span>建信基金换帅·曲寅军履新</span><span style="color:#37474f">|</span>
+  <span>银行收紧原油类基金销售</span><span style="color:#37474f">|</span>
+  <span>ETF新规·增强型ETF扩容</span>
+  <span class="blink" style="color:var(--neon);margin-left:auto">&#x258A;</span>
+</div>
+
+<!-- [01] 市场热点 -->
+<div class="sec s1">
+  <div class="sh"><span class="n">[01]</span> &#x25B8; 市场热点 · 政策消息 · 板块异动</div>
+  <div class="sb">
+    <div class="item"><span class="tag tb">重磅</span><span class="b">&#x25B8;</span><strong>公募基金总规模首破39万亿元：</strong>中国基金业协会数据显示，截至2026年4月底，公募基金资产净值合计<span class="g">39.36万亿元</span>，首次突破39万亿大关，再创历史新高。债券及货币基金单月规模增量均超5000亿元。<em>&rarr; 行业规模持续扩张</em></div>
+    <div class="item"><span class="tag tb">重磅</span><span class="b">&#x25B8;</span><strong>外资机构集体上调A股预期：</strong>高盛、瑞银、摩根士丹利等多家国际投行密集发声，一致上调对中国资产预期。高盛将沪深300指数未来12个月目标位上调至<span class="g">5300点</span>，看好人工智能、先进制造、能源安全三大方向。<em>&rarr; 北向资金有望加速流入</em></div>
+    <div class="item"><span class="tag tr">风险</span><span class="b">&#x25B8;</span><strong>银行收紧高风险基金销售：</strong>多家商业银行集中上调代销原油类公募基金的风险等级，多数由R4上调至<span class="r">R5</span>（最高风险等级）。部分银行对含权理财实施适当性管控，主动拦截大额R4/R5产品交易。<em>&rarr; 防范风险错配</em></div>
+    <div class="item"><span class="tag tb">行情</span><span class="b">&#x25B8;</span><strong>5月27日A股复盘 — 沪指失守4100点：</strong>三大指数涨跌不一，沪指低开低走失守4100点，科创50指数盘中跌超3%。大消费板块活跃，机器人、半导体设备调整。全市场近<span class="r">4500只</span>个股下跌，两市成交额<span class="g">3.24万亿元</span>。</div>
+    <div class="item"><span class="tag tg">资金</span><span class="b">&#x25B8;</span><strong>ETF资金流向分化：</strong>股票ETF净流出470亿元，但债券ETF和全球市场ETF分别净流入<span class="g">36.62亿元</span>和<span class="g">0.25亿元</span>。消费电子、通信、有色金属等行业主题ETF获资金净流入。</div>
+  </div>
+</div>
+
+<!-- [02] 基金动态 -->
+<div class="sec s2">
+  <div class="sh"><span class="n">[02]</span> &#x25B8; 基金动态 · 经理变更 · 限购 · 分红 · 新发</div>
+  <div class="sb">
+    <div class="warn2">基金经理变更公告 &nbsp; 共 <span class="r">1起</span> · 5月28日</div>
+    <div class="item"><span class="num num-r">01</span><span class="tag tr">换帅</span><strong class="r">建信基金 — 曲寅军履新董事长：</strong>生柳荣因到龄退休离任董事长，由曲寅军新任。曲寅军1999年加入建行，2005年参与建信基金筹备，曾任建信资本、建信股权投资公司等高管。<em>&rarr; 头部公募高管更迭</em></div>
+
+    <div class="warn">限购/暂停申购公告 &nbsp; 共 <span class="o">4只</span></div>
+    <div class="item"><span class="num num-o">01</span><span class="tag to">限购</span><strong>财通成长优选混合</strong> — 自5月27日起，单日单个账户申购、定投及转换转入额度限制为<span class="r">1万元</span>（A、C份额合并计算）。</div>
+    <div class="item"><span class="num num-o">02</span><span class="tag to">暂停</span><strong>港美互联网LOF(160644)</strong> — 自5月28日起暂停申购和定投业务，5月28日开市起停牌至10:30复牌，赎回业务照常办理。</div>
+    <div class="item"><span class="num num-o">03</span><span class="tag to">停牌</span><strong>中韩半导体ETF华泰柏瑞</strong> — 5月28日开市起至10:30停牌，提示二级市场价格溢价风险。</div>
+    <div class="item"><span class="num num-o">04</span><span class="tag to">停牌</span><strong>纳指科技ETF景顺(159509)</strong> — 5月28日开市起停牌至10:30复牌，提示二级市场价格明显高于IOPV。</div>
+
+    <div class="subhead">&#x25CE; 基金分红</div>
+    <div class="item"><span class="tag tg">分红</span><strong>华宝标普中国A股红利机会ETF联接(LOF)</strong> — 2026年度第二次分红，A/C份额每10份派<span class="g">0.1840元</span>。场外除息日5月28日，场内5月29日，现金红利发放日6月3日。</div>
+
+    <div class="subhead">&#x25CE; 新发基金</div>
+    <div class="item"><span class="tag to">首发</span><strong>工银瑞信国证半导体芯片ETF</strong> — 5月28日深交所上市，首日成交额预计超<span class="g">10亿</span>。</div>
+    <div class="item"><span class="tag to">发行</span><strong>天弘养老目标2050五年持有FOF</strong> — 养老目标日期型基金，目标规模<span class="g">10亿</span>，5月27日起售。</div>
+  </div>
+</div>
+
+<!-- [03] 机构观点 -->
+<div class="sec s3">
+  <div class="sh"><span class="n">[03]</span> &#x25B8; 机构观点 · 基金公司 · 券商策略</div>
+  <div class="sb">
+    <div class="item"><span class="num num-o">01</span><span class="tag to">策略</span><strong>某大型基金郄永忠 — 下半年均衡配置、左侧布局：</strong>认为科技成长仍是核心主线，但需关注美联储加息预期反复及技术路线风险。建议均衡配置，关注高端半导体、AI服务器等高景气细分领域，以及刚需消费、高端制造、资源板块的左侧布局机会。<br><span style="color:#546e7a;font-size:10px">来源：每日经济新闻</span></div>
+    <div class="item"><span class="num num-o">02</span><span class="tag to">策略</span><strong>农银汇理基金邢军亮 — 景气为矛，均衡为底：</strong>建议摒弃情绪化跟风，坚持轮动思路。以景气趋势捕捉机会，以跨行业分散配置稳住底盘。未来重点聚焦AI与前沿科技、周期与大宗商品、绿色能源与新能源三条主线。<br><span style="color:#546e7a;font-size:10px">来源：每日经济新闻</span></div>
+    <div class="item"><span class="num num-o">03</span><span class="tag to">FOF</span><strong>工银瑞信FOF基金经理徐心远 — 更新均衡分散策略：</strong>指出在全球债务周期与技术革命共振下，传统均衡分散策略效果减弱。FOF产品应发挥大类资产配置优势，应对多周期叠加的复杂环境。<br><span style="color:#546e7a;font-size:10px">来源：每日经济新闻</span></div>
+    <div class="item"><span class="num num-o">04</span><span class="tag to">配置</span><strong>广发证券财富管理部 — 5月配置思路 AI制造+出海+反内卷：</strong>建议A股"标配"，关注AI算力及制造业出海驱动的结构性机会。看好三条主线：景气成长（半导体、光模块）、龙头出海（创新药、工程机械）、反内卷下的供需改善（化工、工业金属）。港股及海外市场建议"标配"。<br><span style="color:#546e7a;font-size:10px">来源：广发证券财富管理部</span></div>
+  </div>
+</div>
+
+<!-- [04] 基金数据 -->
+<div class="sec s4">
+  <div class="sh"><span class="n">[04]</span> &#x25B8; 基金数据 · 指数表现 · ETF资金 · 净值</div>
+  <div class="sb">
+    <div class="item"><span class="num">01</span><span class="tag tp">复盘</span><strong>5月27日A股收盘：</strong>沪指<span class="r">-0.87%</span>报4098点，深成指<span class="r">-0.53%</span>，创业板指<span class="r">-0.41%</span>，科创50<span class="r">-3.12%</span>。大消费板块活跃，机器人、半导体设备板块调整。全市场近4500只个股下跌，两市成交额3.24万亿。</div>
+    <div class="item"><span class="num">02</span><span class="tag tp">ETF</span><strong>ETF涨跌榜（5月27日）：</strong>中韩半导体ETF华泰柏瑞<span class="g">+5.3%</span>、亚太精选ETF南方<span class="g">+5.1%</span>领涨；信创ETF广发<span class="r">-4.8%</span>、黄金股ETF<span class="r">-4.5%</span>、机器人ETF<span class="r">-4.2%</span>领跌。</div>
+    <div class="item"><span class="num">03</span><span class="tag tp">资金</span><strong>ETF资金流向（5月25日）：</strong>全市场股票ETF净流出约<span class="r">470亿元</span>，债券ETF净流入<span class="g">36.62亿</span>，全球市场ETF净流入<span class="g">0.25亿</span>。消费电子ETF华夏净流入<span class="g">9.3亿元</span>居首。</div>
+    <div class="item"><span class="num">04</span><span class="tag tp">调研</span><strong>公募自购与调研动态：</strong>截至5月24日，年内公募对旗下非货币基金净申购规模达<span class="g">34.52亿元</span>。公募调研仍偏爱电子行业，连续数周成为调研焦点。首批26只新型浮动费率基金中，22只成立以来业绩收正。</div>
+    <div class="item"><span class="num">05</span><span class="tag tp">规模</span><strong>公募基金总规模再创新高：</strong>截至4月底，公募基金资产净值合计<span class="g">39.36万亿元</span>，单月增长约9000亿。ETF规模突破<span class="g">5.8万亿</span>，债券及货币基金为增长主力。</div>
+  </div>
+</div>
+
+<!-- [05] 投资策略 -->
+<div class="sec s5">
+  <div class="sh"><span class="n">[05]</span> &#x25B8; 投资策略 · 短期建议 · 配置思路</div>
+  <div class="sb">
+    <div class="item"><span class="tag tg">策略</span><span class="b">&#x25B8;</span><strong>券商中期策略：聚焦确定性主线 —</strong>建议权益基金聚焦红利、大盘风格及核心资产等确定性主线；固收基金以中短久期品种为底仓；QDII基金需做好预期管理，关注原油、黄金等资产波动。<br><span style="color:#546e7a;font-size:10px">来源：上海证券基金评价</span></div>
+    <div class="item"><span class="tag tg">配置</span><span class="b">&#x25B8;</span><strong>震荡市应对：中性仓位+低位布局 —</strong>当前市场以交易层面主导，建议保持中性仓位，利用震荡做低成本。投资机会仍在中盘蓝筹，关注低位周期和AI制造。对于非法跨境证券期货基金活动，建议投资者转向港股通、QDII等合规渠道。<br><span style="color:#546e7a;font-size:10px">来源：每日经济新闻</span></div>
+    <div class="item"><span class="tag tg">方向</span><span class="b">&#x25B8;</span><strong>AI制造+出海+反内卷三大主线：</strong>景气成长方向关注半导体、光模块、AI服务器；龙头出海关注创新药、工程机械、家电；供需改善关注化工、工业金属。港股建议标配，关注低估值红利板块。</div>
+    <div class="item"><span class="tag tb">ETF</span><span class="b">&#x25B8;</span><strong>ETF配置建议：</strong>短期关注消费电子ETF（资金持续流入）、半导体ETF（景气周期）、红利低波ETF（防御配置）。高溢价跨境ETF建议回避，等待溢价回归后介入。</div>
+    <div class="item"><span class="tag to">提醒</span><span class="b">&#x25B8;</span><strong>风险提示：</strong>中韩半导体ETF、纳指科技ETF等跨境产品溢价较高，停牌风险增加。原油类基金风险等级上调至R5，普通投资者需谨慎。震荡市中避免追涨杀跌，坚持定投纪律。</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="ft">
+  <span style="color:var(--neon)">[ TRANSMISSION COMPLETE ]</span><br>
+  <span style="color:#546e7a">市场热点5 | 基金动态7 | 机构观点4 | 基金数据5 | 投资策略5</span><br>
+  <span style="color:#37474f">NEXT CYCLE: 2026-05-29 22:00 CST</span>
+</div>
+
+</div>
+
+<script>
+(function(){
+  const c=document.getElementById('matrix');
+  const ctx=c.getContext('2d');
+  let w,h,cols,arr;
+  function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;cols=Math.floor(w/20);arr=[];for(let i=0;i<cols;i++)arr[i]=Math.random()*h}
+  resize();window.addEventListener('resize',resize);
+  const chars='アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF<>/\\|{}[]@#$%&*';
+  function draw(){
+    ctx.fillStyle='rgba(3,5,10,.12)';ctx.fillRect(0,0,w,h);
+    ctx.fillStyle='#00ff41';ctx.font='13px monospace';
+    for(let i=0;i<arr.length;i++){
+      const ch=chars[Math.floor(Math.random()*chars.length)];
+      ctx.fillText(ch,i*20,arr[i]);
+      if(arr[i]>h+20&&Math.random()>.98)arr[i]=0;else arr[i]+=20
+    }
+  }
+  setInterval(draw,60);
+})();
+(function(){
+  const p=document.getElementById('particles');
+  for(let i=0;i<20;i++){
+    const d=document.createElement('div');d.className='particle';
+    d.style.left=Math.random()*100+'%';d.style.top=(50+Math.random()*50)+'%';
+    d.style.animationDelay=Math.random()*6+'s';
+    d.style.animationDuration=(3+Math.random()*6)+'s';
+    d.style.width=(1+Math.random()*2)+'px';
+    d.style.height=d.style.width;
+    p.appendChild(d);
+  }
+})();
+</script>
+</body>
+</html>
