@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基金日报 | 2026.06.03</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,"Times New Roman","Noto Serif SC",serif;background:#fff;color:#222;line-height:1.8;padding:32px 16px}
+.container{max-width:680px;margin:0 auto}
+.masthead{text-align:center;padding-bottom:20px;border-bottom:3px double #222;margin-bottom:28px}
+.masthead h1{font-size:28px;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+.masthead .meta{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:3px}
+.lead{padding:8px 0 20px;border-bottom:1px solid #ddd;margin-bottom:24px}
+.lead h2{font-size:18px;font-weight:700;line-height:1.5;color:#111;margin-bottom:6px}
+.lead .summary{font-size:14px;color:#555}
+.key-data{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0;padding:12px 0;border-top:1px solid #eee;border-bottom:1px solid #eee}
+.key-data .kd{text-align:center;flex:1;min-width:80px}
+.kd .num{font-size:22px;font-weight:700;color:#111}
+.kd .label{font-size:10px;color:#999;text-transform:uppercase;margin-top:2px}
+.section{margin-bottom:28px}
+.section-head{font-size:16px;font-weight:700;color:#111;padding-bottom:6px;border-bottom:2px solid #222;margin-bottom:14px;display:flex;align-items:baseline;gap:8px}
+.section-head .count{font-size:12px;color:#999;font-weight:400}
+.item{margin-bottom:12px;padding-left:12px;border-left:2px solid #eee;font-size:14px}
+.item:hover{border-left-color:#999}
+.tag{font-family:-apple-system,sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-right:6px}
+.tag-blue{color:#228be6}.tag-red{color:#e03131}.tag-orange{color:#e8590c}.tag-green{color:#2b8a3e}.tag-purple{color:#6741d9}
+.source{font-family:-apple-system,sans-serif;color:#bbb;font-size:11px;margin-left:4px}
+a{color:#228be6;text-decoration:none;border-bottom:1px dotted #ccc}
+a:hover{border-bottom-color:#228be6}
+.footer{text-align:center;color:#bbb;font-size:10px;padding:20px 0;border-top:1px solid #eee;margin-top:20px;font-family:-apple-system,sans-serif}
+
+/* === 大盘指数数据条 === */
+.market-strip{padding:0 0 18px;margin-bottom:20px;border-bottom:1px solid #eee}
+.market-data{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;padding:4px 0 10px}
+.market-data .idx{text-align:center;flex:1;min-width:70px;max-width:120px}
+.idx .name{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.idx .val{font-size:20px;font-weight:700;color:#111;line-height:1.3}
+.idx .chg{font-size:13px;font-weight:700;line-height:1.3}
+.idx .up{color:#2b8a3e}.idx .down{color:#e03131}
+.market-secondary{text-align:center;font-size:11px;color:#888;padding:4px 0 6px;font-family:-apple-system,sans-serif;letter-spacing:.5px}
+.market-comment{font-size:11px;color:#999;font-style:italic;padding-top:4px;line-height:1.7;text-align:center}
+
+/* === 行业板块表格 === */
+.sector-wrap{margin-bottom:16px}
+.sector-subhead{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1.5px;padding:8px 0 4px;font-family:-apple-system,sans-serif}
+.sector-table{width:100%;font-size:13px;border-collapse:collapse;margin-bottom:2px}
+.sector-table td{padding:5px 8px;border-bottom:1px solid #f5f5f5;vertical-align:middle;line-height:1.6}
+.sector-table .s-name{font-weight:600;color:#333;width:80px;font-size:12px}
+.sector-table .s-chg{width:72px;text-align:right;font-weight:700;font-size:12px;font-family:-apple-system,sans-serif}
+.sector-table .s-chg.up{color:#2b8a3e}
+.sector-table .s-chg.down{color:#e03131}
+.sector-table .s-bar{width:70px}
+.sector-table .s-bar-inner{height:3px;min-width:2px}
+.sector-table .s-bar-inner.up{background:#2b8a3e}
+.sector-table .s-bar-inner.down{background:#e03131}
+.sector-table .s-flow{font-size:10px;color:#aaa;text-align:right;font-family:-apple-system,sans-serif;line-height:1.4}
+
+/* === ETF 双列 === */
+.etf-grid{display:flex;gap:20px;margin-top:16px;padding-top:14px;border-top:1px solid #eee}
+.etf-col{flex:1;min-width:0}
+.etf-col h4{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;padding-bottom:6px;margin-bottom:8px;border-bottom:1px solid #ddd;font-family:-apple-system,sans-serif}
+.etf-col.up h4{color:#2b8a3e}
+.etf-col.down h4{color:#e03131}
+.etf-row{display:flex;align-items:baseline;padding:3px 0;border-bottom:1px dotted #f8f8f8;font-size:11px;line-height:1.7;gap:6px}
+.etf-row .rank{font-size:9px;color:#ccc;min-width:14px;font-family:-apple-system,sans-serif}
+.etf-row .etcode{font-size:9px;color:#aaa;font-family:-apple-system,sans-serif;min-width:48px;white-space:nowrap}
+.etf-row .etname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#555}
+.etf-row .etchg{font-weight:700;font-size:11px;white-space:nowrap;font-family:-apple-system,sans-serif;min-width:48px;text-align:right}
+.etf-row .etchg.up{color:#2b8a3e}
+.etf-row .etchg.down{color:#e03131}
+.etf-row .sub{font-size:9px;color:#bbb;display:block;line-height:1.4}
+
+@media(max-width:480px){
+.masthead h1{font-size:22px}
+.item{font-size:13px}
+/* 大盘 */
+.market-data{gap:10px}
+.idx .val{font-size:15px}
+.idx .chg{font-size:11px}
+/* 行业 */
+.sector-table{font-size:11px}
+.sector-table .s-name{width:65px;font-size:10px}
+.sector-table .s-chg{width:58px;font-size:10px}
+.sector-table .s-bar{width:40px}
+.sector-table .s-flow{font-size:9px}
+/* ETF */
+.etf-grid{flex-direction:column;gap:12px}
+.etf-row{font-size:10px}
+.etf-row .etcode{min-width:42px;font-size:8px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="masthead">
+<h1>基金日报</h1>
+<div class="meta">2026.06.03 &middot; 星期三</div>
+</div>
+
+<div class="lead">
+<h2>公募换标尺：195只基金集中调整业绩基准，4000亿规模大洗牌</h2>
+<div class="summary">本周72只新发基金启动募集，权益类占主导；ETF规模突破5.8万亿创新高；德邦百亿基金经理雷涛清仓式卸任，大V带货事件持续发酵。</div>
+
+</div>
+
+<!-- 今日市场概览 -->
+<div class="market-strip">
+<div class="section-head">今日市场概览</div>
+<div class="market-data">
+<div class="idx"><div class="name">上证指数</div><div class="val">4083.97</div><div class="chg up">+0.22%</div></div>
+<div class="idx"><div class="name">深证成指</div><div class="val">15704.71</div><div class="chg up">+0.73%</div></div>
+<div class="idx"><div class="name">创业板指</div><div class="val">4122.99</div><div class="chg up">+1.65%</div></div>
+<div class="idx"><div class="name">科创50</div><div class="val">1726.18</div><div class="chg up">+2.11%</div></div>
+<div class="idx"><div class="name">沪深300</div><div class="val">4938.81</div><div class="chg up">+0.49%</div></div>
+</div>
+<div class="market-secondary">成交额 3.15万亿（较前日增量3403亿）&nbsp;&middot;&nbsp; 上涨 1713家 / 下跌 3727家</div>
+<div class="market-comment">三大指数冲高回落，创业板指盘中历史性突破4200点后跳水，个股跌多涨少，市场分歧加剧。</div>
+</div>
+
+<div class="section">
+<div class="section-head">[01] 基金行业政策与宏观新闻 <span class="count">5 条</span></div>
+
+<div class="item"><span class="tag tag-blue">重磅</span>首批12家公募195只基金业绩比较基准调整正式落地，覆盖近4000亿规模。证监会《业绩比较基准指引》自3月施行，严禁风格漂移，基金产品不得因基金经理变更随意调整基准。<a href="https://new.qq.com/rain/a/20260603A01LZS00" target="_blank" class="source">每日经济新闻</a></div>
+
+<div class="item"><span class="tag tag-blue">政策</span>公募基金费率改革全面收官——主动偏股认申购费上限降至0.8%，销售服务费上限0.4%，全行业年让利超500亿元。国海富兰克林基金6月2日起直销免收认申购费。<a href="https://m.chinabgao.com/info/1300639.html" target="_blank" class="source">中国报告大厅</a></div>
+
+<div class="item"><span class="tag tag-blue">政策</span>证监会修订基金信息披露准则：季报须在季度结束后15个工作日内披露，中报/年报需三分之二以上独立董事签字，压实高管把关责任。5月1日起实施。<a href="https://dxpress.gelonghui.com/p/4594739" target="_blank" class="source">格隆汇</a></div>
+
+<div class="item"><span class="tag tag-blue">数据</span>公募基金总规模达34.2万亿元，ETF规模突破5.8万亿创历史新高。债券指数基金规模突破1.6万亿元，被动投资成债市主流。<a href="https://caifuhao.eastmoney.com/news/20260602172456654984300" target="_blank" class="source">东方财富</a></div>
+
+<div class="item"><span class="tag tag-blue">宏观</span>6月新发基金191只，权益类占65%。仅前2个交易日权益类新发达68只，科技类产品（科创/芯片/AI/数字经济）15只占权益新发30.6%。<a href="https://www.news.cn/money/20260603/d606c929beb54c55b564e4d845f500a4/c.html" target="_blank" class="source">新华网</a></div>
+</div>
+
+<div class="section">
+<div class="section-head">[02] 基金业绩与市场表现 <span class="count">5 条</span></div>
+
+<!-- 行业板块表现 -->
+<div class="sector-wrap">
+<div class="sector-subhead">行业板块表现 &mdash; 涨幅 TOP3</div>
+<table class="sector-table">
+<tr><td class="s-name">通信</td><td class="s-chg up">+4.78%</td><td class="s-bar"><div class="s-bar-inner up" style="width:100%"></div></td><td class="s-flow">光纤技术突破+AI算力需求</td></tr>
+<tr><td class="s-name">煤炭</td><td class="s-chg up">+2.55%</td><td class="s-bar"><div class="s-bar-inner up" style="width:53%"></div></td><td class="s-flow">近5日涨10.61%，高股息逻辑</td></tr>
+<tr><td class="s-name">电子</td><td class="s-chg up">+2.30%</td><td class="s-bar"><div class="s-bar-inner up" style="width:48%"></div></td><td class="s-flow">半导体+CPO概念催化</td></tr>
+</table>
+<div class="sector-subhead">跌幅 TOP3</div>
+<table class="sector-table">
+<tr><td class="s-name">综合</td><td class="s-chg down">-1.82%</td><td class="s-bar"><div class="s-bar-inner down" style="width:38%"></div></td><td class="s-flow"></td></tr>
+<tr><td class="s-name">建筑材料</td><td class="s-chg down">-1.69%</td><td class="s-bar"><div class="s-bar-inner down" style="width:35%"></div></td><td class="s-flow"></td></tr>
+<tr><td class="s-name">交通运输</td><td class="s-chg down">-1.64%</td><td class="s-bar"><div class="s-bar-inner down" style="width:34%"></div></td><td class="s-flow"></td></tr>
+</table>
+<div class="sector-subhead">主力资金动向</div>
+<table class="sector-table">
+<tr><td class="s-name" style="color:#2b8a3e">流入 TOP3</td><td class="s-flow" colspan="3" style="text-align:left;font-size:11px">电子 +289亿&emsp;通信 +177亿&emsp;有色金属 +100亿</td></tr>
+<tr><td class="s-name" style="color:#e03131">流出 TOP3</td><td class="s-flow" colspan="3" style="text-align:left;font-size:11px">电力设备 -92亿&emsp;医药生物 -40亿&emsp;计算机</td></tr>
+</table>
+<div class="market-comment" style="text-align:left">通信、电子、煤炭三箭齐发，资金向高景气赛道集中；电力设备、医药生物遭抛售，板块分化加剧。</div>
+</div>
+
+<div class="item"><span class="tag tag-red">涨幅</span>中韩半导体ETF（华泰柏瑞）年内回报逼近96%，韩国综合指数创历史新高触发熔断。但溢价率已飙至17.98%，年内发布溢价风险提示超160次，资金拥挤严重。<a href="https://caifuhao.eastmoney.com/news/20260602172456654984300" target="_blank" class="source">东方财富</a></div>
+
+<div class="item"><span class="tag tag-red">异动</span>科技基金净值严重偏离重仓股——5月末科技与消费板块"高低切"行情中，多只公募产品实际净值与一季报重仓股估算净值大相径庭，疑似已悄悄调仓，基民质疑信息不对称。<a href="https://caifuhao.eastmoney.com/news/20260602172456654984300" target="_blank" class="source">东方财富</a></div>
+
+<div class="item"><span class="tag tag-red">跌幅</span>德邦稳盈增长灵活配置混合Q1合计亏损21.57亿元（C类亏20.56亿+A类亏1.01亿），基金经理雷涛已清仓式卸任全部4只产品，部分机构启动赎回评估。<a href="https://www.163.com/dy/article/KUCJ7SMC05199NPP.html" target="_blank" class="source">21世纪经济报道</a></div>
+
+<div class="item"><span class="tag tag-red">轮动</span>科技与消费板块"高低切"行情持续——科创板、半导体ETF领涨市场，部分消费主题基金此前重仓科技，在风格漂移整治下面临调仓回补压力。<a href="https://new.qq.com/rain/a/20260603A06MW400" target="_blank" class="source">腾讯网</a></div>
+
+<div class="item"><span class="tag tag-red">数据</span>韩股"涨熔断"背景下QDII溢价走阔——中韩半导体ETF溢价率17.98%，多只QDII基金额度紧张，跨境投资通道收窄，溢价风险持续累积。<a href="https://caifuhao.eastmoney.com/news/20260602172456654984300" target="_blank" class="source">东方财富</a></div>
+
+<!-- ETF涨跌TOP -->
+<div class="etf-grid">
+<div class="etf-col up">
+<h4>ETF 涨幅 TOP5</h4>
+<div class="etf-row"><span class="rank">1</span><span class="etcode">588020</span><span class="etname">科创成长ETF易方达</span><span class="etchg up">+5.20%</span></div>
+<div class="etf-row"><span class="rank">2</span><span class="etcode">515880</span><span class="etname">通信ETF国泰</span><span class="etchg up">+4.95%</span></div>
+<div class="etf-row"><span class="rank">3</span><span class="etcode">159583</span><span class="etname">通信ETF富国</span><span class="etchg up">+4.88%</span></div>
+<div class="etf-row"><span class="rank">4</span><span class="etcode">513350</span><span class="etname">标普油气ETF富国</span><span class="etchg up">+4.23%</span><span class="sub">换手率202%</span></div>
+<div class="etf-row"><span class="rank">5</span><span class="etcode">515050</span><span class="etname">通信ETF华夏</span><span class="etchg up">+4.01%</span></div>
+</div>
+<div class="etf-col down">
+<h4>ETF 跌幅 TOP5</h4>
+<div class="etf-row"><span class="rank">1</span><span class="etcode">513120</span><span class="etname">港股创新药ETF广发</span><span class="etchg down">-3.80%</span><span class="sub">年内跌12.98%</span></div>
+<div class="etf-row"><span class="rank">2</span><span class="etcode">516820</span><span class="etname">医疗创新ETF平安</span><span class="etchg down">-1.88%</span></div>
+<div class="etf-row"><span class="rank">3</span><span class="etcode">159766</span><span class="etname">旅游ETF富国</span><span class="etchg down">-1.82%</span></div>
+<div class="etf-row"><span class="rank">4</span><span class="etcode">515120</span><span class="etname">创新药ETF广发</span><span class="etchg down">-1.79%</span></div>
+<div class="etf-row"><span class="rank">5</span><span class="etcode">515230</span><span class="etname">软件ETF国泰</span><span class="etchg down">-1.78%</span></div>
+</div>
+</div>
+<div class="market-comment" style="text-align:left;padding-top:10px">科创成长与通信ETF批量爆发，科技主线强者恒强；医药赛道全线溃败，港股创新药ETF领跌。</div>
+</div>
+
+<div class="section">
+<div class="section-head">[03] ETF资金流向 <span class="count">5 条</span></div>
+
+<div class="item"><span class="tag tag-green">份额</span>ETF总规模突破5.8万亿元创历史新高，被动投资时代全面来临。债券指数基金规模同步突破1.6万亿，指数化配置成机构核心策略。<a href="https://caifuhao.eastmoney.com/news/20260602172456654984300" target="_blank" class="source">东方财富</a></div>
+
+<div class="item"><span class="tag tag-green">流入</span>华夏上证综指ETF（510143）6月1日正式发行，管理费仅0.15%加托管费0.05%，综合费率仅0.2%创行业新低，低费率策略成吸金利器。<a href="https://www.cs.com.cn/ssgs/07/2026/06/01/detail_2026060110015292.html" target="_blank" class="source">中国证券报</a></div>
+
+<div class="item"><span class="tag tag-green">流入</span>华夏中证全指软件ETF（159068）6月1日至12日发售，现金募集上限80亿元，基金经理司帆。万家港股通科技智选仅计划发售1天，机构对科技赛道高度自信。<a href="https://www.stcn.com/article/detail/3936119.html" target="_blank" class="source">证券时报</a></div>
+
+<div class="item"><span class="tag tag-green">流出</span>中韩半导体ETF溢价率飙至17.98%致资金拥挤严重——年内风险提示超160次，一旦韩股回调可能触发大规模赎回踩踏，机构已提示流动性风险。<a href="https://caifuhao.eastmoney.com/news/20260602172456654984300" target="_blank" class="source">东方财富</a></div>
+
+<div class="item"><span class="tag tag-green">份额</span>华夏基金与汇添富基金本周各发行5只新基金，涵盖被动指数、偏股混合、偏债混合等多元品种。FOF发行9只创13周新高，资产配置类工具需求回暖。<a href="https://www.stcn.com/article/detail/3936092.html" target="_blank" class="source">证券日报</a></div>
+</div>
+
+<div class="section">
+<div class="section-head">[04] 监管动态 <span class="count">5 条</span></div>
+
+<div class="item"><span class="tag tag-purple">立案</span>八部门联合印发方案整治非法跨境证券经营——证监会对老虎证券、富途证券、长桥证券境内外主体非法经营证券业务立案调查，拟没收全部违法所得，两年内全面取缔。<a href="https://credit.dt.gov.cn/wcm/content/detail/20260601093115_100022.html" target="_blank" class="source">法治日报</a></div>
+
+<div class="item"><span class="tag tag-purple">处罚</span>德邦基金因与不具备基金销售资格的互联网大V开展营销合作、未充分揭示风险，被证监会责令改正并暂停受理公募基金产品注册，总经理、督察长、互联网业务负责人被同步追责。<a href="https://www.163.com/dy/article/KUGTK4F405568V7Z.html" target="_blank" class="source">财中社</a></div>
+
+<div class="item"><span class="tag tag-purple">新规</span>基金"挂羊头卖狗肉"时代终结——195只基金集中调整业绩比较基准，覆盖规模近4000亿，持仓必须匹配契约定位，消费基金重仓AI/半导体等违规行为被勒令纠正。<a href="https://cj.sina.com.cn/articles/view/8281045676/1ed96baac00101llec" target="_blank" class="source">券业智酷</a></div>
+
+<div class="item"><span class="tag tag-purple">新规</span>基金业协会发布《绩效考核管理指引》——将中长期业绩跑赢/跑输基准与基金经理绩效薪酬直接挂钩，引导长期价值投资，遏制短期投机冲规模行为。<a href="https://finance.sina.com.cn/roll/2026-04-30/doc-inhwhvkc7321576.shtml" target="_blank" class="source">新浪财经</a></div>
+
+<div class="item"><span class="tag tag-purple">监管</span>证监会通报严禁无资质互联网大V开展基金营销合作，"基金实盘大V带货"模式被全面叫停。某大型公募基金经理因在社交媒体泄露未公开持仓信息被暂停执业1年。<a href="https://new.qq.com/rain/a/20260602A05YHO00" target="_blank" class="source">21世纪经济报道</a></div>
+</div>
+
+<div class="section">
+<div class="section-head">[05] 基金行业热点 <span class="count">6 条</span></div>
+
+<div class="item"><span class="tag tag-green">TOP1</span>4000亿公募大洗牌——195只基金正式"换标尺"，12家头部公募率先完成调整。基金"挂羊头卖狗肉"时代彻底终结，30万亿公募行业底层规则正在被改写。<a href="https://cj.sina.com.cn/articles/view/8281045676/1ed96baac00101llec" target="_blank" class="source">券业智酷</a></div>
+
+<div class="item"><span class="tag tag-green">热搜</span>德邦基金百亿经理雷涛"清仓式卸任"引爆舆论——曾因"大V带货日销120亿"轰动市场，Q1巨亏21.57亿后闪电离任全部4只产品。微博话题#德邦基金雷涛离任#引发广泛讨论。<a href="https://m.10jqka.com.cn/20260603/c677191942.shtml" target="_blank" class="source">钛媒体</a></div>
+
+<div class="item"><span class="tag tag-green">趋势</span>"不买主动买指数"风潮加速——6月新发191只基金中指数型产品占比最高，债券指数基金突破1.6万亿，ETF持续扩容，被动投资时代全面来临。<a href="https://www.news.cn/money/20260603/d606c929beb54c55b564e4d845f500a4/c.html" target="_blank" class="source">新华网</a></div>
+
+<div class="item"><span class="tag tag-blue">产品</span>公募首次披露股东会年度投票记录——165家管理人按监管新规完成2025年度对外行使股东投票表决权情况披露，外资公募投票积极性最高、异议率也最高，引发"积极股东主义"讨论。<a href="https://new.qq.com/rain/a/20260603A01LZS00" target="_blank" class="source">每日经济新闻</a></div>
+
+<div class="item"><span class="tag tag-orange">并购</span>中小公募增资潮持续——国融基金增资至2.5亿、湘财基金增至4亿，弘毅远方、睿远、先锋基金等年内均完成增资。行业马太效应加剧，中小公募"输血"难解"造血"困局。<a href="https://www.nbd.com.cn/articles/2026-06-03/4416654.html" target="_blank" class="source">每日经济新闻</a></div>
+
+<div class="item"><span class="tag tag-green">趋势</span>基金业探索"AI+量化"融合新路径——多家公募将AI选股模型嵌入投研流程，主观与量化团队联合拆解市场变化，探索超额收益新途径，行业竞争逻辑从"拼渠道"转向"拼投研"。<a href="https://new.qq.com/rain/a/20260603A01LZS00" target="_blank" class="source">每日经济新闻</a></div>
+</div>
+
+<div class="section">
+<div class="section-head">[06] 今日操作建议 <span class="count">5 条</span></div>
+
+<div class="item">科技主线（通信+4.78%、科创+2.11%、ETF批量爆发）强势但短期交易拥挤，追高风险显著上升，宜等回调或采取定投策略分批介入。</div>
+
+<div class="item">煤炭板块近5日涨10.61%，高股息逻辑持续验证，但短期涨幅已大、性价比下降，持仓者可考虑部分止盈，空仓者不宜追高。</div>
+
+<div class="item">医药赛道全线溃败（港股创新药ETF -3.80%、年内跌幅扩大至12.98%），估值进入历史低位区间，中长期定投可关注，但需分批建仓、控制单次仓位。</div>
+
+<div class="item">全市场成交额3.15万亿但个股涨少跌多（1713涨 / 3727跌），指数行情特征明显，警惕"赚指数不赚钱"的结构性风险，重个股轻指数。</div>
+
+<div class="item">创业板指盘中突破4200点历史新高后跳水，短期市场分歧加剧、波动率放大，建议控制总仓位在六成以内，保留现金应对震荡。</div>
+</div>
+
+<div class="footer">本报告基于公开媒体报道自动生成 &middot; 不构成投资建议 &middot; 6个板块 &middot; 31条资讯 &middot; NEXT: 2026-06-04</div>
+
+</div>
+</body>
+</html>
